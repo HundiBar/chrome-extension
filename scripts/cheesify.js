@@ -1,9 +1,15 @@
+// Listen for messages on the content page
+chrome.runtime.onMessage.addListener(
+  function (request, sender, sendResponse) {
+    if (request.action === 'cheesify') cheesify();
+  }
+);
+
+// Our image replacement script
 function cheesify() {
-  // TODO: Add the image replacement script here
+  console.log("cheesey");
   document.querySelectorAll('img').forEach((img) => {
     img.src = `https://source.unsplash.com/${img.width}x${img.height}/?cheese&${Math.random()}`;
     img.srcset = img.src;
   })
 }
-
-// TODO: Write a function to listen for messages on the content page using chrome.runtime.onMessage
